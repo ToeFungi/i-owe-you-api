@@ -1,0 +1,7 @@
+class PaymentNotFoundError extends Error {
+  constructor (message?: string) {
+    super(message || 'Payment not found')
+  }
+}
+
+export { PaymentNotFoundError }
