@@ -3,10 +3,14 @@ import config from '../config'
 import { Request, Response } from 'express'
 
 class Metrics {
-  private statsdClient: StatsdClient = new StatsdClient({
-    host: config.metrics.host,
-    port: config.metrics.port
-  })
+  private statsdClient: StatsdClient
+
+  constructor () {
+    this.statsdClient = new StatsdClient({
+      host: config.metrics.host,
+      port: config.metrics.port
+    })
+  }
 
   public handle (req: Request, res: Response, next: any) {
     const time = new Date()
