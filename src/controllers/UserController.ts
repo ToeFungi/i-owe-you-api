@@ -10,13 +10,13 @@ class UserController {
     })
   }
 
-  public updateUser (req, Request, res: Response) {
+  public updateUser (req: Request, res: Response) {
     res.status(200).send({
       message: 'put request asdf!!!!'
     })
   }
 
-  public deleteUser (req, Request, res: Response) {
+  public deleteUser (req: Request, res: Response) {
     res.status(200).send({
       message: 'delete request asdf!!!!'
     })

@@ -3,9 +3,11 @@ import * as bodyParser from 'body-parser'
 import { Application } from 'express'
 import { RoutesAggregator } from './routes/RoutesAggregator'
 import { ErrorHandler } from './errors/ErrorHandler'
+import { Metrics } from './middleware/Metrics'
 
 class App {
   public app: Application
+  public metrics: Metrics = new Metrics()
   public routes: RoutesAggregator = new RoutesAggregator()
   public errorHandler: ErrorHandler = new ErrorHandler()
 
@@ -21,6 +23,7 @@ class App {
   private config(): void{
     this.app.use(bodyParser.json())
     this.app.use(bodyParser.urlencoded({ extended: false }))
+    this.app.use(this.metrics.handle.bind(this.metrics))
   }
 }
 

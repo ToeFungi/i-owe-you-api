@@ -3,6 +3,7 @@ import { Payment } from '../models/Payment'
 import { PaymentNotFoundError } from '../errors/PaymentNotFoundError'
 import { MalformedPaymentError } from '../errors/MalformedPaymentError'
 import { PaymentExistsError } from '../errors/PaymentExistsError'
+import { HttpCodes } from '../lib/HttpCodes'
 
 class PaymentController {
   public paymentList: Array<Payment>
@@ -39,7 +40,7 @@ class PaymentController {
       throw new MalformedPaymentError()
     }
 
-    res.status(200).send()
+    res.status(HttpCodes.OK).send()
   }
 
   /**
@@ -57,7 +58,7 @@ class PaymentController {
       throw new PaymentNotFoundError()
     }
 
-    res.status(200).send({
+    res.status(HttpCodes.OK).send({
       payments: payments
     })
   }
@@ -75,7 +76,7 @@ class PaymentController {
       throw new PaymentNotFoundError()
     }
 
-    res.status(200).send({
+    res.status(HttpCodes.OK).send({
       payment: payment.toJson()
     })
   }
@@ -87,7 +88,6 @@ class PaymentController {
    * @throws PaymentNotFoundError|MalformedPaymentError
    */
   public updatePayment (req: Request, res: Response) {
-
     const paymentIndex = this.paymentList.findIndex((payment: Payment) => {
       return req.params.paymentId === payment.getId()
     })
@@ -109,8 +109,7 @@ class PaymentController {
       throw new MalformedPaymentError()
     }
 
-
-    res.status(200).send()
+    res.status(HttpCodes.OK).send()
   }
 
   /**
@@ -130,7 +129,7 @@ class PaymentController {
 
     this.paymentList = payments
 
-    res.status(200).send()
+    res.status(HttpCodes.OK).send()
   }
 }
 

@@ -2,21 +2,33 @@ import { PaymentNotFoundError } from './PaymentNotFoundError'
 import config from '../config'
 import { MalformedPaymentError } from './MalformedPaymentError'
 import { PaymentExistsError } from './PaymentExistsError'
+import * as StatsdClient from 'statsd-client'
+import { HttpCodes } from '../lib/HttpCodes'
 
 class ErrorHandler {
   private error: Error
+  private statsdClient: StatsdClient
+
+  constructor () {
+    this.statsdClient = new StatsdClient({
+      host: config.metrics.host,
+      port: config.metrics.port
+    })
+  }
+
 
   public handle(err, req, res, next) {
     this.error = err
 
     if (err instanceof PaymentNotFoundError) {
-      res.status(404).send(this.decorateResponse)
+      res.status(HttpCodes.NOT_FOUND).send(this.decorateResponse)
     } else if (err instanceof MalformedPaymentError) {
-      res.status(400).send(this.decorateResponse)
+      res.status(HttpCodes.BAD_REQUEST).send(this.decorateResponse)
     } else if (err instanceof PaymentExistsError) {
-      res.status(409).send(this.decorateResponse)
+      res.status(HttpCodes.CONFLICT).send(this.decorateResponse)
     } else {
-      res.status(500).send({
+      this.statsdClient.increment('UnknownError.counter')
+      res.status(HttpCodes.INTERNAL_SERVER_ERROR).send({
         message: err.message,
         stack_trace: err.stack
       })
@@ -28,7 +40,7 @@ class ErrorHandler {
       message: this.error.message
     }
 
-    if (config.env.level !== 'production') {
+    if (config.app.env !== 'production') {
       body = {
         ...body,
         stack_trace: this.error.stack
