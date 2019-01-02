@@ -1,7 +1,7 @@
 const config = {
   app: {
     name: process.env.APP_NAME || 'TS Express App',
-    port: parseInt(process.env.PORT, 10) || 3000,
+    port: parseInt(process.env.PORT, 10) || 80,
     env: 'dev', // dev | staging | production | debug
   },
   metrics: {

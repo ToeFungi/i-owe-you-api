@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  iou:
+    build:
+      context: '.docker/'
+      dockerfile: 'Dockerfile'
+    image: iou:latest
+    container_name: 'iou'
+    command: ['npm', 'run', 'dev']
+    volumes: [ './:/usr/src/app' ]
+    expose:
+      - 80
+    environment:
+      VIRTUAL_HOST: 'iou'
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
