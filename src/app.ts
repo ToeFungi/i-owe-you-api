@@ -2,7 +2,7 @@ import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import { Application } from 'express'
 import { RoutesAggregator } from './routes/RoutesAggregator'
-import { ErrorHandler } from './errors/ErrorHandler'
+import { ErrorHandler } from './middleware/ErrorHandler'
 import { Metrics } from './middleware/Metrics'
 
 class App {

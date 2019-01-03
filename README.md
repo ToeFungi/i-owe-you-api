@@ -22,10 +22,24 @@ $ npm run start // Only works after build
 $ npm run prod
 ```
 
+### Tests
+At the moment, there aren't really any test suites but there is a somewhat of a stub test case.
+The test can be run with the following command
+```bash
+$ npm run tests
+```
+The test suite uses
+- Chai
+- Chai-as-promised
+- Sinon
+- Sinon-chai
+- Mocha
+- Nyc (code coverage)
+
 ### Optional
-This API has integrations with StatsD, Grafana and InfluxDB for basic metrics review. Please
-have a look at the `errors` to see how the basic metrics are pulled. This implementation will
-change in the future.
+This API has integrations with StatsD, Grafana and InfluxDB for basic metrics reporting. The manner
+in which the metrics are dispatched is subject to change in future as well as the types that are 
+being recorded.
 
 [StatsD, InfluxDB & Grafana](https://github.com/samuelebistoletti/docker-statsd-influxdb-grafana)
 
@@ -34,7 +48,7 @@ The current variables available to be adjusted are as follows with their default
 ```bash
 APP_NAME: 'TS Express App'
 APP_ENV: 'dev' // staging | production | debug # These don't change anything yet
-APP_PORT: 3000
+
 STATSD_HOST: '127.0.0.1'
 STATSD_PORT: 8125
 ```

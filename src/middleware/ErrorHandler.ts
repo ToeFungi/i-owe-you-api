@@ -1,7 +1,7 @@
-import { PaymentNotFoundError } from './PaymentNotFoundError'
+import { PaymentNotFoundError } from '../errors/PaymentNotFoundError'
 import config from '../config'
-import { MalformedPaymentError } from './MalformedPaymentError'
-import { PaymentExistsError } from './PaymentExistsError'
+import { MalformedPaymentError } from '../errors/MalformedPaymentError'
+import { PaymentExistsError } from '../errors/PaymentExistsError'
 import * as StatsdClient from 'statsd-client'
 import { HttpCodes } from '../lib/HttpCodes'
 
