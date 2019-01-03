@@ -29,10 +29,10 @@ class Payment {
 
   public toJson (): object {
     return {
-      id: this.id,
-      recipientId: this.recipientId,
-      payeeId: this.payeeId,
-      amount: this.amount
+      id: this.getId(),
+      recipientId: this.getRecipientId(),
+      payeeId: this.getPayeeId(),
+      amount: this.getAmount()
     }
   }
 }
