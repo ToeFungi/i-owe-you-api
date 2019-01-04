@@ -36,7 +36,7 @@ The test suite uses
 - Mocha
 - Nyc (code coverage)
 
-### Optional
+### Optional Metrics
 This API has integrations with StatsD, Grafana and InfluxDB for basic metrics reporting. The manner
 in which the metrics are dispatched is subject to change in future as well as the types that are 
 being recorded.
@@ -45,14 +45,14 @@ being recorded.
 
 ### Environment
 The current variables available to be adjusted are as follows with their default values
-```bash
-APP_NAME: 'TS Express App'
-APP_PORT: 8080
-APP_ENV: 'dev'
 
-STATSD_HOST: '127.0.0.1'
-STATSD_PORT: 8125
-```
+| Variable    | Defaults      | Description                                                                   |
+|-------------|---------------|-------------------------------------------------------------------------------|
+| APP_NAME    | "@TS/Express" | The name of the application                                                   |
+| APP_PORT    | 80            | The port to access the application over                                       |
+| APP_ENV     | "dev"         | The environment the application is running. (dev, staging, production, debug) |
+| STATSD_HOST | "127.0.0.1"   | The IP the metrics should be sent to over UDP                                 |
+| STATSD_PORT | 8125          | The port to be used for the UDP stream                                        |
 
 All of the environment variables are accessible through a singular config file and grouped in
 a logical manner.
