@@ -47,7 +47,8 @@ being recorded.
 The current variables available to be adjusted are as follows with their default values
 ```bash
 APP_NAME: 'TS Express App'
-APP_ENV: 'dev' // staging | production | debug # These don't change anything yet
+APP_PORT: 8080
+APP_ENV: 'dev'
 
 STATSD_HOST: '127.0.0.1'
 STATSD_PORT: 8125
